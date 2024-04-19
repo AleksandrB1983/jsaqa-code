@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "playwright"
+    "test": "playwright test"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/plugin-syntax-import-attributes": "^7.24.1",
     "@playwright/test": "^1.12.3",
+    "@types/node": "^20.12.7",
     "playwright": "^1.12.3"
   }
 }
