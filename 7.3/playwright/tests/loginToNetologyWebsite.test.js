@@ -1,5 +1,5 @@
 const { describe } = require("node:test");
-const { chromium } = require("@playwright/test");
+const { test, expect } = require("@playwright/test");
 const { login, password } = require("C:/Users/welcome/Desktop/jsaqa-code/7.3/playwright/user.js");
 
 describe("Authorization on the netology website", async () => {
