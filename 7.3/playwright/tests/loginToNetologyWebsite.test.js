@@ -9,28 +9,28 @@ describe("Authorization on the netology website", () => {
       slowMo: 5000,
       devtools: true
     });  
-    const page = await browser.newPage("https://netology.ru/?modal=sign_in");   
+    const page = await browser.newPage();   
     await page.goto("https://netology.ru/?modal=sign_in");
-    await page.getByLabel("Email").fill(email);
-    await page.getByLabel("Password").fill(password);
-    await page.getByRole("button", { name: "Sign in" }).click();
-    await page.waitForURL("https://netology.ru/");   
-    await expect(page.getByRole("button", { name: "https://netology.ru/profile/8810739" })).toBeVisible();  
+    await page.getByPlaceholder("Email").fill(email);
+    await page.getByPlaceholder("Пароль").fill(password);
+    await page.getByTestId("login-submit-btn").click();      
+    await expect(page).toHaveURL("https://netology.ru/profile/8810739");
+      
   })();  
-  
-  test("Unsuccessful authorization", async () => {
-    const browser = await chromium.launch({
-      headless: false,
-      slowMo: 5000,
-      devtools: true
-    });
-    const page = await browser.newPage("https://netology.ru/?modal=sign_in");
-    const email1 = "qwerty123@main.ru";
-    const password1 = "qwerty890";
-    await page.goto("https://netology.ru/?modal=sign_in");
-    await page.getByLabel(input("Email")).fill(email1);
-    await page.getByLabel(input("Password")).fill(password1);
-    await page.getByRole("button", { name: "Sign in" }).click();    
-    await expect(page.getByRole("button", { name: "https://netology.ru/?modal=sign_in" })).toBeVisible();        
-  })();
+});
+
+test("Unsuccessful authorization", async () => {
+  const browser = await chromium.launch({
+    headless: false,
+    slowMo: 5000,
+    devtools: true
+  });
+  const page = await browser.newPage();
+  const email1 = "qwerty123@main.ru";
+  const password1 = "qwerty890";
+  await page.goto("https://netology.ru/?modal=sign_in");
+  await page.getByPlaceholder("Email").fill(email1);
+  await page.getByPlaceholder("Пароль").fill(password1);
+  await page.getByTestId("login-submit-btn").click();    
+  await expect(page).toHaveURL("https://netology.ru/?modal=sign_in");        
 });
