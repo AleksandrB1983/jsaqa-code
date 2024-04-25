@@ -1,6 +1,6 @@
 const { describe } = require("node:test");
 const { test, expect, chromium } = require("@playwright/test");
-const { email, password } = require("C:/Users/welcome/Desktop/jsaqa-code/7.3/playwright/user.js");
+import { email, password } from "../user.js";
 
 describe("Authorization on the netology website", () => {
   test("Successful authorization", async () => {
@@ -26,11 +26,13 @@ test("Unsuccessful authorization", async () => {
     devtools: true
   });
   const page = await browser.newPage();
+  const error = await page.locator('[data-testid="login-error-hint"]');
   const email1 = "qwerty123@main.ru";
   const password1 = "qwerty890";
   await page.goto("https://netology.ru/?modal=sign_in");
   await page.getByPlaceholder("Email").fill(email1);
   await page.getByPlaceholder("Пароль").fill(password1);
   await page.getByTestId("login-submit-btn").click();    
-  await expect(page).toHaveURL("https://netology.ru/?modal=sign_in");        
+  await expect(error).toHaveText("Вы ввели неправильно логин или пароль"); 
+  await expect(page).toHaveURL("https://netology.ru/?modal=sign_in");    
 });
