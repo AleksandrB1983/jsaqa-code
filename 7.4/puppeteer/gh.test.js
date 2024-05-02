@@ -1,10 +1,19 @@
 let page;
 
+beforeEach(async () => {
+  page = await browser.newPage();
+  
+}, 180000);
+
+afterEach(() => {
+  page.close();
+});
+
 describe("Github page tests", () => {
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/team");
-  }, 80000);
+  });
+
   test("The h1 header content", async () => {
     const firstLink = await page.$("header div div a");
     await firstLink.click();
@@ -25,17 +34,13 @@ describe("Github page tests", () => {
     });
     const actual = await page.$eval(btnSelector, link => link.textContent);
     expect(actual).toContain("Get started with Team")
-  }, 25000);
-  afterEach(() => {
-    page.close();
-  });
+  }, 20000);   
 });
 
-describe("Github new page tests", () => {
+describe("Github new page tests", () => { 
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/services");
-  }, 80000);  
+  });  
 
   test("The h1 header content", async () => {
     const secondLink = await page.$("header div div a");
@@ -57,18 +62,13 @@ describe("Github new page tests", () => {
     });
     const actual = await page.$eval(btnSelector, link => link.textContent);
     expect(actual).toContain("Contact Experts")
-  }, 20000);
-
-  afterEach(() => {
-    page.close();
-  });
+  }, 20000);  
 });
 
-describe("Github new page tests 3", () => {
+describe("Github new page tests 3", () => { 
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/features");
-  }, 80000);  
+  });  
 
   test("The h1 header content", async () => {
     const thirtLink = await page.$("header div div a");
@@ -90,9 +90,5 @@ describe("Github new page tests 3", () => {
     });
     const actual = await page.$eval(btnSelector, link => link.textContent);
     expect(actual).toContain("Experience AI", " with Copilot Chat")
-  }, 17000);
-
-  afterEach(() => {
-    page.close();
-  });
+  }, 20000);  
 });
