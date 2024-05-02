@@ -5,7 +5,7 @@ describe("Github page tests", () => {
     page = await browser.newPage();
     await page.goto("https://github.com/team");
   }, 80000);
-  test("The h1 header content'", async () => {
+  test("The h1 header content", async () => {
     const firstLink = await page.$("header div div a");
     await firstLink.click();
     await page.waitForSelector('h1');
@@ -37,7 +37,7 @@ describe("Github new page tests", () => {
     await page.goto("https://github.com/services");
   }, 80000);  
 
-  test("The h1 header content'", async () => {
+  test("The h1 header content", async () => {
     const secondLink = await page.$("header div div a");
     await secondLink.click();
     await page.waitForSelector('h1');
@@ -70,7 +70,7 @@ describe("Github new page tests 3", () => {
     await page.goto("https://github.com/features");
   }, 80000);  
 
-  test("The h1 header content'", async () => {
+  test("The h1 header content", async () => {
     const thirtLink = await page.$("header div div a");
     await thirtLink.click();
     await page.waitForSelector("h1");
