@@ -57,10 +57,10 @@ test("Should show warning if login is not email", async () => {
 describe("qamid.tmweb.ru tests", () => {
   beforeEach(async () => {
     page = await browser.newPage();
-    await page.goto("https://qamid.tmweb.ru/client/index.php");
+    await page.goto("https://qamid.tmweb.ru");
   });
 
-  test("Successful reservation of two seats in the cinema hall", async () => {
+  test("Successful reservation of two seats in the cinema hall", async () => {  
     await clickElement(page, "[class='page-nav__day ']");
     await clickElement(page, "[class='movie-seances__time']");
     await clickElement(page, "[class='buying-scheme__chair buying-scheme__chair_standart']");
